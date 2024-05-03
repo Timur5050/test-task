@@ -10,7 +10,13 @@ class Restaurant(models.Model):
 
 
 class Employee(models.Model):
-    id_restaurant = models.ForeignKey(Restaurant, on_delete=models.DO_NOTHING)
+    id_restaurant = models.ForeignKey('Restaurant', on_delete=models.DO_NOTHING)
     name = models.CharField(max_length=255)
     surname = models.CharField(max_length=255)
     vote_result = models.BooleanField(default=False)
+
+
+class Menu(models.Model):
+    id_restaurant = models.ForeignKey('Restaurant', on_delete=models.DO_NOTHING)
+    creating_date = models.DateTimeField(auto_now_add=True)
+    menu_items = models.JSONField()
