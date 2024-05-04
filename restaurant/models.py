@@ -4,19 +4,18 @@ from django.db import models
 
 
 class Restaurant(models.Model):
-    id_restaurant = models.IntegerField()
     name_restaurant = models.CharField(max_length=255)
     menu_update_time = models.DateTimeField(auto_now=True)
 
 
 class Employee(models.Model):
-    id_restaurant = models.ForeignKey('Restaurant', on_delete=models.DO_NOTHING)
+    id_restaurant = models.IntegerField(null=True)
     name = models.CharField(max_length=255)
     surname = models.CharField(max_length=255)
-    vote_result = models.BooleanField(default=False)
+    vote_result = models.IntegerField(null=True)
 
 
 class Menu(models.Model):
-    id_restaurant = models.ForeignKey('Restaurant', on_delete=models.DO_NOTHING)
+    id_restaurant = models.IntegerField(null=True)
     creating_date = models.DateTimeField(auto_now_add=True)
     menu_items = models.JSONField()

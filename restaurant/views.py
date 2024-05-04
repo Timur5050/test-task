@@ -4,15 +4,10 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import Restaurant
-from .serializers import RestaurantSerializer
+from .models import Restaurant, Employee, Menu
+from .serializers import RestaurantSerializer, EmployeeSerializer, MenuSerializer
 
 
-# Create your views here.
-
-# class RestaurantAPIView(generics.ListAPIView):
-#     queryset = Restaurant.objects.all()
-#     serializer_class = RestaurantSerializer
 class RestaurantAPIView(APIView):
     def get(self, request):
         lst = Restaurant.objects.all()
@@ -21,9 +16,29 @@ class RestaurantAPIView(APIView):
     def post(self, request):
         serializer = RestaurantSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'restaurant': serializer.data})
 
-        restaurant_new = Restaurant.objects.create(
-            id_restaurant=request.data['id_restaurant'],
-            name_restaurant=request.data['name_restaurant'],
-        )
-        return Response({'restaurant': RestaurantSerializer(restaurant_new).data})
+
+class EmployeeAPIView(APIView):
+    def get(self, request):
+        lst = Employee.objects.all()
+        return Response({'Employees': EmployeeSerializer(lst, many=True).data})
+
+    def post(self, request):
+        serializer = EmployeeSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'Employee': serializer.data})
+
+
+class MenuAPIView(APIView):
+    def get(self, request):
+        lst = Menu.objects.all()
+        return Response({'Menus': MenuSerializer(lst, many=True).data})
+
+    def post(self, request):
+        serializer = MenuSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'Menus': serializer.data})
