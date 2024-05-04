@@ -17,11 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from restaurant.views import RestaurantAPIView, EmployeeAPIView, MenuAPIView
+from restaurant.views import RestaurantAPIView, EmployeeAPIView, MenuAPIView, GetResultOfCurrentDay
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/restaurantList', RestaurantAPIView.as_view()),
     path('api/v1/employeeList', EmployeeAPIView.as_view()),
-    path('api/v1/menuList', MenuAPIView.as_view())
+    path('api/v1/employeeList/<int:pk>/', EmployeeAPIView.as_view()),
+    path('api/v1/menuList', MenuAPIView.as_view()),
+    path('api/v1/getResultOfCurrentDay/<int:pk>/', GetResultOfCurrentDay.as_view())
 ]

@@ -9,13 +9,14 @@ class Restaurant(models.Model):
 
 
 class Employee(models.Model):
-    id_restaurant = models.IntegerField(null=True)
-    name = models.CharField(max_length=255)
-    surname = models.CharField(max_length=255)
-    vote_result = models.IntegerField(null=True)
+    id_restaurant = models.IntegerField(blank=True, default=0)
+    name = models.CharField(max_length=255, blank=True, default='no')
+    surname = models.CharField(max_length=255, blank=True, default='name')
+    vote_result = models.IntegerField(blank=True, default=0)
 
 
 class Menu(models.Model):
+    name = models.CharField(max_length=255, blank=True, default='standard')
     id_restaurant = models.IntegerField(null=True)
     creating_date = models.DateTimeField(auto_now_add=True)
     menu_items = models.JSONField()
