@@ -4,12 +4,14 @@ from django.db import models
 
 
 class Restaurant(models.Model):
+    id_restaurant = models.IntegerField(blank=True, default=0)
     name_restaurant = models.CharField(max_length=255)
     menu_update_time = models.DateTimeField(auto_now=True)
 
 
 class Employee(models.Model):
     id_restaurant = models.IntegerField(blank=True, default=0)
+    #id_restaurant = models.ForeignKey("Restaurant", db_column='id_restaurant', on_delete=models.CASCADE)
     name = models.CharField(max_length=255, blank=True, default='no')
     surname = models.CharField(max_length=255, blank=True, default='name')
     vote_result = models.IntegerField(blank=True, default=0)

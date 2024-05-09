@@ -6,10 +6,18 @@ from .models import Restaurant, Employee, Menu
 
 
 class RestaurantSerializer(serializers.Serializer):
+    id_restaurant = serializers.IntegerField(default=0)
     name_restaurant = serializers.CharField(max_length=255)
     menu_update_time = serializers.DateTimeField(read_only=True)
 
     def create(self, validated_data):
+        id_restaurant = validated_data.get('id_restaurant', None)
+        if id_restaurant is not None:
+            try:
+                existing_restaurant = Restaurant.objects.get(id_restaurant=id_restaurant)
+                raise serializers.ValidationError("Invalid vote result for the specified restaurant.")
+            except Restaurant.DoesNotExist:
+                pass
         return Restaurant.objects.create(**validated_data)
 
     #def update(self, instance, validated_data):

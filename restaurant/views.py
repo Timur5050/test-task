@@ -98,6 +98,14 @@ class GetResultOfCurrentDay(APIView):
 
         total_menu_results = {}
         #for result in lst_of_restaurants:
+        for restaurant in lst_of_restaurants:
+            initial_restaurant = restaurant.get(pk_restaurant)
+            if initial_restaurant:
+                values = list(restaurant.values())[0]
+                if values:
+                    mx = max(list(values.values()))
+                    for menu in values:
+                        if values[menu] == mx:
+                            return Response({'rests': lst_of_restaurants, f"best menu for {pk_restaurant} restaurant": menu})
 
-
-        return Response({'rests': lst_of_restaurants})
+        return Response({'rests': lst_of_restaurants, f"there are no menus for :{pk_restaurant}": None})
