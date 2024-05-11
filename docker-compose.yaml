@@ -1,0 +1,11 @@
+version: '2.27'
+
+services:
+  db_auth:
+    container_name: db_auth
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_PASSWORD=2281337
+      - POSTGRES_USER=timur5050
+    image: postgres:14.3-alpine

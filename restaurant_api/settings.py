@@ -85,11 +85,11 @@ WSGI_APPLICATION = 'restaurant_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'restaurant',
-        'USER': 'restaurant_admin',
+        'NAME': 'timur5050',
+        'USER': 'timur5050',
         'PASSWORD': '2281337',
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': '5433',
     }
 }
 # Password validation
