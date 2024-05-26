@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.forms import model_to_dict
+from django.http import HttpResponse
 from django.utils import timezone
 from rest_framework import generics
 from django.shortcuts import render
@@ -109,3 +110,8 @@ class GetResultOfCurrentDay(APIView):
                             return Response({'rests': lst_of_restaurants, f"best menu for {pk_restaurant} restaurant": menu})
 
         return Response({'rests': lst_of_restaurants, f"there are no menus for :{pk_restaurant}": None})
+
+
+def start(request):
+    return HttpResponse("hello")
+

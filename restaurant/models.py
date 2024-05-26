@@ -4,7 +4,6 @@ from django.db import models
 
 
 class Restaurant(models.Model):
-    id_restaurant = models.IntegerField(blank=True, default=0)
     name_restaurant = models.CharField(max_length=255)
     menu_update_time = models.DateTimeField(auto_now=True)
 
